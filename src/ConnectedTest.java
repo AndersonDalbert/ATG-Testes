@@ -9,8 +9,10 @@ import graph.Graph;
 import graph.WeightedGraph;
 
 /**
- * Essa classe de testes testa o método connected() da biblioteca.
- * 
+ * Essa classe de testes verifica a corretude do método connected() da biblioteca do grupo
+ * que está sendo avaliado.
+ * Nota sugerida: 4 - Falha em todos os testes de grafos desconexos e falha para entradas grandes
+ * de grafos conexos.
  * @author Anderson Dalbert
  *
  */
@@ -147,7 +149,7 @@ public class ConnectedTest {
 	 * Esse teste considera um grafo com pesos simples e verifica sua conexidade.
 	 */
 	@Test
-	public void testGrafoComPesosConexo() {
+	public void testGrafoComPesos() {
 		Integer[] verticesOrigem = new Integer[] {1, 2};
 		Integer[] verticesDestino = new Integer[] {2, 3};
 		Double[] arrayPesos = new Double[] {1.0, 2.5};
@@ -160,7 +162,7 @@ public class ConnectedTest {
 	 * Esse teste considera um grafo com pesos simples e verifica sua não-conexidade.
 	 */
 	@Test
-	public void testGrafoComPesosDesconexo() {
+	public void testGrafoDesconexoComPesos() {
 		Integer[] verticesOrigem = new Integer[] {1, 2};
 		Integer[] verticesDestino = new Integer[] {2, 3};
 		Double[] arrayPesos = new Double[] {1.0, 2.5};
@@ -174,7 +176,7 @@ public class ConnectedTest {
 	 * conexidade.
 	 */
 	@Test
-	public void testGrafoComPesosNegativosConexo() {
+	public void testGrafoComPesosNegativos() {
 		Integer[] verticesOrigem = new Integer[] {1, 2};
 		Integer[] verticesDestino = new Integer[] {2, 3};
 		Double[] arrayPesos = new Double[] {-1.0, -2.5};
@@ -188,7 +190,7 @@ public class ConnectedTest {
 	 * não-conexidade.
 	 */
 	@Test
-	public void testGrafoComPesosNegativosDesconexo() {
+	public void testGrafoDesconexoComPesosNegativos() {
 		Integer[] verticesOrigem = new Integer[] {1, 2};
 		Integer[] verticesDestino = new Integer[] {2, 3};
 		Double[] arrayPesos = new Double[] {-1.0, -2.5};
@@ -205,7 +207,7 @@ public class ConnectedTest {
 	 * para esse caso.
 	 */
 	@Test
-	public void testGrafoGrandeConexo() {
+	public void testGrafoGrande() {
 		int[] arrayOrigem = IntStream.rangeClosed(1, 1000).toArray();
 		Integer[] verticesOrigem = IntStream.of( arrayOrigem ).boxed().toArray( Integer[]::new );
 		
@@ -222,7 +224,7 @@ public class ConnectedTest {
 	 * para esse caso.
 	 */
 	@Test
-	public void testGrafoGrandeDesconexo() {
+	public void testGrafoDesconexoGrande() {
 		int[] arrayOrigem = IntStream.rangeClosed(1, 1000).toArray();
 		Integer[] verticesOrigem = IntStream.of( arrayOrigem ).boxed().toArray( Integer[]::new );
 		
@@ -239,7 +241,7 @@ public class ConnectedTest {
 	 * para esse caso.
 	 */
 	@Test
-	public void testGrafoGiganteConexo() {
+	public void testGrafoGigante() {
 		int[] arrayOrigem = IntStream.rangeClosed(1, 10000000).toArray();
 		Integer[] verticesOrigem = IntStream.of( arrayOrigem ).boxed().toArray( Integer[]::new );
 		
@@ -256,7 +258,7 @@ public class ConnectedTest {
 	 * para esse caso.
 	 */
 	@Test
-	public void testGrafoGiganteDesConexo() {
+	public void testGrafoDesconexoGigante() {
 		int[] arrayOrigem = IntStream.rangeClosed(1, 10000000).toArray();
 		Integer[] verticesOrigem = IntStream.of( arrayOrigem ).boxed().toArray( Integer[]::new );
 		
