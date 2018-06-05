@@ -3,19 +3,13 @@
  * 04/06/2018
  */
 
-package atg;
-
 import controller.Controller;
 import graph.Graph;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 
