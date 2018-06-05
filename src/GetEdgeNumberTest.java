@@ -17,7 +17,7 @@ import graph.WeightedGraph;
  * 
  *
  */
-public class getEdgeNumberTest {
+public class GetEdgeNumberTest {
 
 	/**
 	 * Testa a quantidade de arestas de um grafo sem arestas e com um vértice, que deve 
