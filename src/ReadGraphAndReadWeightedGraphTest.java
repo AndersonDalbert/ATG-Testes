@@ -15,9 +15,9 @@ import java.util.Random;
 
 import static org.junit.Assert.fail;
 
-public class TestesFilipe {
+public class ReadGraphAndReadWeightedGraphTest {
 
-    public TestesFilipe() {
+    public ReadGraphAndReadWeightedGraphTest() {
 
     }
 
