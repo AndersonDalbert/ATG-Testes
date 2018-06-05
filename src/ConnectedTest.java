@@ -1,6 +1,8 @@
 
 import static org.junit.Assert.*;
 
+import java.util.stream.IntStream;
+
 import org.junit.Test;
 
 import graph.Graph;
@@ -14,6 +16,9 @@ import graph.Graph;
 public class ConnectedTest {
 
 
+	/**
+	 * Um grafo caminho deve ser conexo
+	 */
 	@Test
 	public void testGrafoCaminho() {
 		Integer[] verticesOrigem = new Integer[] {1, 2};
@@ -23,6 +28,9 @@ public class ConnectedTest {
 		assertTrue(graph.connected());
 	}
 	
+	/**
+	 * Um grafo completo deve ser conexo
+	 */
 	@Test
 	public void testGrafoCompleto() {
 		Integer[] verticesOrigem = new Integer[] {1, 1, 2, 2, 3, 3};
@@ -32,6 +40,9 @@ public class ConnectedTest {
 		assertTrue(graph.connected());
 	}
 
+	/**
+	 * Um grafo ciclo deve ser conexo
+	 */
 	@Test
 	public void testGrafoCiclo() {
 		Integer[] verticesOrigem = new Integer[] {1, 2, 3};
@@ -41,6 +52,10 @@ public class ConnectedTest {
 		assertTrue(graph.connected());
 	}
 	
+	/**
+	 * Se o grafo tem apenas um vértice ele é conexo, pois não se pode encontrar
+	 * um contra-exemplo para a regra de conexidade.
+	 */
 	@Test
 	public void testGrafoComUmVertice() {
 		Integer[] verticesOrigem = new Integer[] {};
@@ -50,15 +65,30 @@ public class ConnectedTest {
 		assertTrue(graph.connected());
 	}
 	
+	/**
+	 * Um grafo k-1 com loop também é conexo
+	 */
 	@Test
-	public void testGrafoComLoop() {
+	public void testGrafComUmVerticeoComLoop() {
 		Integer[] verticesOrigem = new Integer[] {1};
 		Integer[] verticesDestino = new Integer[] {1};
 		Graph graph = new Graph(1, verticesOrigem, verticesDestino);
 		
 		assertTrue(graph.connected());
 	}
-	
+
+	/**
+	 * Um grafo com n vértices com loop também é conexo
+	 */
+	@Test
+	public void testGrafComMaisDeUmVerticeoComLoop() {
+		Integer[] verticesOrigem = new Integer[] {1, 2, 3};
+		Integer[] verticesDestino = new Integer[] {2, 3, 3};
+		Graph graph = new Graph(3, verticesOrigem, verticesDestino);
+		
+		assertTrue(graph.connected());
+	}
+
 	/**
 	 * Um grafo nulo deve ser considerado conexo, pois só seria desconexo caso existissem vértices que não e
 	 */
@@ -112,5 +142,71 @@ public class ConnectedTest {
 		assertFalse(graph.connected());
 	}
 	
-
+	/**
+	 * Popula um grafo com 1000 vértices que é conexo e verifica se a função permanece correta
+	 * para esse caso.
+	 */
+	@Test
+	public void testGrafoGrandeConexo() {
+		int[] arrayOrigem = IntStream.rangeClosed(1, 1000).toArray();
+		Integer[] verticesOrigem = IntStream.of( arrayOrigem ).boxed().toArray( Integer[]::new );
+		
+		int[] arrayDestino = IntStream.rangeClosed(2, 1000).toArray();
+		Integer[] verticesDestino = IntStream.of( arrayDestino ).boxed().toArray( Integer[]::new );
+		
+		Graph graph = new Graph(1000, verticesOrigem, verticesDestino);
+		
+		assertTrue(graph.connected());
+	}
+	
+	/**
+	 * Popula um grafo com 1000 vértices que é desconexo e verifica se a função permanece correta
+	 * para esse caso.
+	 */
+	@Test
+	public void testGrafoGrandeDesconexo() {
+		int[] arrayOrigem = IntStream.rangeClosed(1, 1000).toArray();
+		Integer[] verticesOrigem = IntStream.of( arrayOrigem ).boxed().toArray( Integer[]::new );
+		
+		int[] arrayDestino = IntStream.rangeClosed(2, 1000).toArray();
+		Integer[] verticesDestino = IntStream.of( arrayDestino ).boxed().toArray( Integer[]::new );
+		
+		Graph graph = new Graph(1001, verticesOrigem, verticesDestino);
+		
+		assertFalse(graph.connected());
+	}
+	
+	/**
+	 * Popula um grafo com 10 ** 7 vértices que é conexo e verifica se a função permanece correta
+	 * para esse caso.
+	 */
+	@Test
+	public void testGrafoGiganteConexo() {
+		int[] arrayOrigem = IntStream.rangeClosed(1, 10000000).toArray();
+		Integer[] verticesOrigem = IntStream.of( arrayOrigem ).boxed().toArray( Integer[]::new );
+		
+		int[] arrayDestino = IntStream.rangeClosed(2, 10000000).toArray();
+		Integer[] verticesDestino = IntStream.of( arrayDestino ).boxed().toArray( Integer[]::new );
+		
+		Graph graph = new Graph(10000000, verticesOrigem, verticesDestino);
+		
+		assertFalse(graph.connected());
+	}
+	
+	/**
+	 * Popula um grafo com 10 ** 7 vértices que é desconexo e verifica se a função permanece correta
+	 * para esse caso.
+	 */
+	@Test
+	public void testGrafoGiganteDesConexo() {
+		int[] arrayOrigem = IntStream.rangeClosed(1, 10000000).toArray();
+		Integer[] verticesOrigem = IntStream.of( arrayOrigem ).boxed().toArray( Integer[]::new );
+		
+		int[] arrayDestino = IntStream.rangeClosed(2, 10000000).toArray();
+		Integer[] verticesDestino = IntStream.of( arrayDestino ).boxed().toArray( Integer[]::new );
+		
+		Graph graph = new Graph(10000001, verticesOrigem, verticesDestino);
+		
+		assertFalse(graph.connected());
+	}
 }
