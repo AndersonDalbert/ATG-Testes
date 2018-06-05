@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 import org.junit.Test;
 
 import graph.Graph;
+import graph.WeightedGraph;
 
 /**
  * Essa classe de testes testa o método connected() da biblioteca.
@@ -143,6 +144,63 @@ public class ConnectedTest {
 	}
 	
 	/**
+	 * Esse teste considera um grafo com pesos simples e verifica sua conexidade.
+	 */
+	@Test
+	public void testGrafoComPesosConexo() {
+		Integer[] verticesOrigem = new Integer[] {1, 2};
+		Integer[] verticesDestino = new Integer[] {2, 3};
+		Double[] arrayPesos = new Double[] {1.0, 2.5};
+		WeightedGraph graph = new WeightedGraph(3, verticesOrigem, verticesDestino, arrayPesos);
+		
+		assertTrue(graph.connected());
+	}
+	
+	/**
+	 * Esse teste considera um grafo com pesos simples e verifica sua não-conexidade.
+	 */
+	@Test
+	public void testGrafoComPesosDesconexo() {
+		Integer[] verticesOrigem = new Integer[] {1, 2};
+		Integer[] verticesDestino = new Integer[] {2, 3};
+		Double[] arrayPesos = new Double[] {1.0, 2.5};
+		WeightedGraph graph = new WeightedGraph(4, verticesOrigem, verticesDestino, arrayPesos);
+		
+		assertFalse(graph.connected());
+	}
+	
+	/**
+	 * Esse teste considera um grafo com pesos simples, incluindo pesos negativos, e verifica sua 
+	 * conexidade.
+	 */
+	@Test
+	public void testGrafoComPesosNegativosConexo() {
+		Integer[] verticesOrigem = new Integer[] {1, 2};
+		Integer[] verticesDestino = new Integer[] {2, 3};
+		Double[] arrayPesos = new Double[] {-1.0, -2.5};
+		WeightedGraph graph = new WeightedGraph(3, verticesOrigem, verticesDestino, arrayPesos);
+		
+		assertTrue(graph.connected());
+	}
+	
+	/**
+	 * Esse teste considera um grafo com pesos simples, incluindo pesos negativos, e verifica sua 
+	 * não-conexidade.
+	 */
+	@Test
+	public void testGrafoComPesosNegativosDesconexo() {
+		Integer[] verticesOrigem = new Integer[] {1, 2};
+		Integer[] verticesDestino = new Integer[] {2, 3};
+		Double[] arrayPesos = new Double[] {-1.0, -2.5};
+		WeightedGraph graph = new WeightedGraph(4, verticesOrigem, verticesDestino, arrayPesos);
+		
+		assertFalse(graph.connected());
+	}
+	
+	
+	
+	
+	/**
 	 * Popula um grafo com 1000 vértices que é conexo e verifica se a função permanece correta
 	 * para esse caso.
 	 */
@@ -209,4 +267,6 @@ public class ConnectedTest {
 		
 		assertFalse(graph.connected());
 	}
+	
+	
 }
