@@ -16,7 +16,7 @@ public class MstTest {
 
             ctrl = new Controller();
             g = ctrl.readGraph("testReadGraph.txt");
-
+            
         } catch (Exception e) {
             fail();
         }
